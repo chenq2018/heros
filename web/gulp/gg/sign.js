@@ -1,0 +1,1 @@
+function sayHello(){console.log("node最牛X"),console.log(888899999)}console.log(123);

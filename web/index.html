@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入css文件 -->
+    <link rel="stylesheet" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="index.css">
+    <!-- semantic.js依赖于jquery所以要先引入jquery -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- 引入js文件 -->
+    <script src="semantic/dist/semantic.min.js"></script>
+    <!-- 引入art-template -->
+    <script src="node_modules/art-template/lib/template-web.js"></script>       
+    <script src="index.js"></script>
+</head>
+
+<!-- 模板应用 -->
+<script type="text/html" id="temp">
+   {{each item}}
+     <tr>
+       <td>
+         <div class="ui ribbon label {{ $value.isdel == 0 ? 'blue' : 'red' }}">{{ $value.isdel == 0 ? '正常' : '删除' }}</div>
+         {{$value.id}}
+       </td>
+       <td>{{$value.name}}</td>
+       <td>{{$value.gender}}</td>
+       <td>{{$value.time}}</td>
+       <td>
+         <a href="javaScript:;" class="edit" data-id="{{$value.id}}">编辑</a>
+         <a href="javaScript:;" class="del" data-id="{{$value.id}}">删除</a>
+       </td>
+     </tr>
+   {{/each}}
+</script>
+
+<body>
+    <h1>英雄列表</h1>
+    <button class="ui primary button" id="btn">添加英雄</button>
+    <table class="ui celled striped table">
+        <thead>
+          <tr><th>编号</th>
+          <th>英雄名称</th>
+          <th>性别</th>
+          <th>创建时间</th>
+          <th>操作</th>
+        </tr></thead>
+        <tbody id="tbodyTable">
+          <!-- <tr>
+            <td>
+              <div class="ui ribbon label">正常</div>
+            </td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+          <tr>
+            <td>
+                <div class="ui ribbon label">正常</div> 
+            </td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+          <tr>
+            <td>
+                <div class="ui ribbon label">正常</div>
+            </td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr> -->
+        </tbody>
+        <tfoot>
+          <tr><th colspan="5">
+            <div class="ui right floated pagination menu">
+              <a class="icon item">
+                <i class="left chevron icon"></i>
+              </a>
+              <a class="item">1</a>
+              <a class="item">2</a>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="icon item">
+                <i class="right chevron icon"></i>
+              </a>
+            </div>
+          </th>
+        </tr></tfoot>
+      </table>
+
+      <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+          添加英雄
+        </div>
+        <div class="content">
+           <form class="ui form" id="form">
+              <div class="field">
+                <label for="">名称:</label>
+                <input type="text" placeholder="请输入英雄名称" name="name">
+              </div>
+              <div class="field">
+                <label for="">性别:</label>
+                <select name="gender" id="" class="ui fluid dropdown">
+                    <option value="男" selected>男</option>
+                    <option value="女">女</option>
+                </select>
+              </div>
+           </form>
+        </div>
+        <div class="actions">
+          <div class="ui black deny button">
+            取消
+          </div>
+          <div class="ui positive right button" id="add">
+            添加
+          </div>
+        </div>
+      </div>
+</body>
+</html>
